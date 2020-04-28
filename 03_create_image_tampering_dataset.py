@@ -9,7 +9,7 @@
 # download the SUN2012 dataser for object detection from https://groups.csail.mit.edu/vision/SUN/
 # Run following command to generate tampered images:
 #
-#    python copy-move-gen.py  --dset=./SUN2012
+#   $ python copy-move-gen.py  --dset=./SUN2012
 
 
 
@@ -95,9 +95,6 @@ def find_annotation_from_rectangles(file):
           # pick a random rect box
           pick_bndbox = randint(1, bndbox_count)
 
-          #print('bndBox Count  : %d' % bndbox_count)
-          #print('bndBox Picked : %d' % pick_bndbox)
-
           bbox_count = 0
 
           for obj in root.findall('object'):
@@ -159,10 +156,6 @@ def find_annotation_from_polygons(file):
                 status = True
                 break
 
-        #print(points)
-        #print('Poly        : %d' % poly_count)
-        #print('Poly Picked %d' % pick_poly)
-        #print('Max Count   : %d' % xny_atmost_count)
 
         if status == False:
             return (xny, status)
@@ -188,7 +181,6 @@ def find_annotation_from_polygons(file):
                             xny[idy][1] = y
                             idy = idy + 1
 
-    #print(xny)
     return (xny, True)
 
 
@@ -365,17 +357,10 @@ def main(dset, anno_type):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description = ' -- Copy-Move dataset generator tool -- ')
 
-    optional = parser._action_groups.pop()
-    required = parser.add_argument_group('required arguments')
-
-    # Optionals here ...
-    #optional.add_argument('--dtype', default='train', help='for training or validation.')
-
-    # Requireds here ...
-    required.add_argument('--dset',
+    parser.add_argument('--dset', required=True,
             help='input root directory for images and annotations. Example: SUN2012 dataset')
 
-    required.add_argument('--anno_type',
+    parser.add_argument('--anno_type', required=True,
             help='type of annotation: rectangle(rect) or polygons(poly) Example: --anno_type=rect')
 
     args = parser.parse_args()
