@@ -7,7 +7,7 @@
 # I am sure you must be wondering how to calculate object_pts?
 # Please read following blog: http://www.morethantechnical.com/2010/03/19/quick-and-easy-head-pose-estimation-with-opencv-w-code/
 #
-# Download Dlib 68 face landmark model: https://github.com/AKSHAYUBHAT/TensorFace/blob/master/openface/models/dlib/shape_predictor_68_face_landmarks.dat
+# Download Dlib 68 face landmark model: http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2
 #
 # Run : python head_pose_estimator.py
 #
