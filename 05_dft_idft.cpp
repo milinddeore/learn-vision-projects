@@ -1,21 +1,26 @@
-#include <iostream>
-#include <opencv2/opencv.hpp>
-
-using namespace std;
-//using namespace cv;
-
 /*
+ * MIT Licence.
+ * Written by Milind Deore <tomdeore@gmail.com>
+ *
+ * Usually, numpy based fast fourier transform (fft) is used for its convenience, thought
+ * openCV DFT works the same way and infact much faster. 
+ * Following code has lgt_dft() that does exactly same for you.
+ *
  * Compile: 
  * g++ -std=c++11 05_dft_idft.cpp -L/usr/local/lib -lopencv_highgui -lopencv_imgcodecs 
  * -lopencv_imgproc -lopencv_core -I/usr/local/include/opencv -I/usr/local/include 
  * -o dft_idft
  *
- *  Run:
+ * Run:
  *  ./dft_idft
- */  
+ */ 
+
+#include <iostream>
+#include <opencv2/opencv.hpp>
+
 
 cv::Mat 
-lgt_Dft(const cv::Mat& src, cv::Mat& dst) {
+lgt_dft(const cv::Mat& src, cv::Mat& dst) {
     cv::Mat expand;
     int m = cv::getOptimalDFTSize(src.rows);
     int n = cv::getOptimalDFTSize(src.cols);
@@ -90,7 +95,7 @@ int main(int argc, char** argv) {
 
     /* Calculate the dft */
     cv::Mat complex_img, mag;
-    mag = lgt_Dft(img, complex_img);
+    mag = lgt_dft(img, complex_img);
     cv::imshow("Image DFT", mag);
 
     /* Calculating the idft (inverse) */
